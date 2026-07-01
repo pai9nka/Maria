@@ -1,0 +1,29 @@
+Move 10 170 2000
+Sound 1
+Pause 15000
+Move 170 10 2000
+Pause 15000
+Sound 2
+Move 90 90 1500
+Sound 3
+Pause 20000
+Move 150 30 2000
+Sound 3
+Move 30 150 2000
+Laser 1
+Sound 1
+Conus 71 72 20
+Pause 5000
+Move 90 90 1500
+Laser 0
+Pause 3000
+Laser 2 200 25
+Sound 2
+Move 150 30 2000
+Laser 3 500
+Sound 4 3500 80
+Laser 0
+Conus 81 82 20
+Sound 1
+Sound 2
+Sound 3

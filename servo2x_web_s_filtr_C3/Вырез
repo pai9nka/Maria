@@ -1,0 +1,47 @@
+/*
+const char INDEX_HTML[] PROGMEM = R"rawliteral(
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Умная Игрушка C3</title><style>body { font-family: Arial, sans-serif; background: #f0f2f5; text-align: center; padding: 20px; color: #333; }.card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); max-width: 500px; margin: 0 auto 20px; }button { background: #007bff; color: white; border: none; padding: 12px 24px; font-size: 16px; border-radius: 6px; cursor: pointer; margin: 5px; }.btn-danger { background: #dc3545; } .btn-success { background: #28a745; }#terminal { background: #222; color: #0f0; font-family: monospace; text-align: left; padding: 15px; height: 180px; overflow-y: scroll; border-radius: 6px; font-size: 13px; }.progress-bar { background: #e9ecef; border-radius: 6px; height: 20px; width: 100%; margin: 10px 0; overflow: hidden; }.progress-fill { background: #28a745; height: 100%; width: 0%; transition: width 0.2s; }.file-input { margin-top: 15px; border: 2px dashed #007bff; padding: 15px; border-radius: 6px; }</style></head>
+<body>
+  <div class="card">
+    <h2>🤖 Контроллер Игрушки (ESP32-C3)</h2>
+    <p><b>Текущая команда:</b> <span id="curCmd">Ожидание...</span></p>
+    <div class="progress-bar"><div id="p1" class="progress-fill"></div></div><p style="font-size:12px; margin-top:-5px;">Мотор 1 Прогресс</p>
+    <div class="progress-bar"><div id="p2" class="progress-fill"></div></div><p style="font-size:12px; margin-top:-5px;">Мотор 2 Прогресс</p>
+  </div>
+  <div class="card">
+    <h3>🎮 Меню Управления</h3>
+    <button onclick="sendCmd('resume')" class="btn-success">▶ Старт / Продолжить</button>
+    <button onclick="sendCmd('pause')" class="btn-danger">⏸ Пауза</button>
+    <button onclick="sendCmd('restart')">🔄 Сброс скрипта</button>
+    <div class="file-input">
+      <form method="POST" action="/update_script" enctype="multipart/form-data">
+        <input type="file" name="update" accept=".txt" required><br><br>
+        <button type="submit">⬆ Заменить файл</button>
+      </form>
+    </div>
+  </div>
+  <div class="card"><h3>📊 Окно Трассировки</h3><div id="terminal"></div></div>
+  <script>
+    function sendCmd(action) {
+      fetch('/api/' + action)
+        .then(r => console.log("Команда отправлена:", action))
+        .catch(e => alert("Ошибка: " + e));
+    }
+    function updateStatus() {
+      fetch('/api/status')
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById('curCmd').innerText = data.cmd;
+          document.getElementById('p1').style.width = data.p1 + '%';
+          document.getElementById('p2').style.width = data.p2 + '%';
+          var term = document.getElementById('terminal');
+          term.innerHTML = data.log.replace(/\\n/g, '<br>');
+          term.scrollTop = term.scrollHeight;
+        })
+        .catch(err => console.error(err));
+    }
+    setInterval(updateStatus, 300);
+  </script>
+</body></html>
+)rawliteral";
+*/

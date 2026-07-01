@@ -1,0 +1,25 @@
+void handleScriptUpload() {
+  HTTPUpload& upload = server.upload();
+  if (upload.status == UPLOAD_FILE_START) {
+    if (TaskParserAssignment != NULL) vTaskDelete(TaskParserAssignment);
+    conusModeActive = false;
+    servo1.isMoving = false;
+    servo2.isMoving = false;
+    LittleFS.remove("/script.txt");
+    File file = LittleFS.open("/script.txt", FILE_WRITE);
+    file.close();
+    logMessage("[Загрузка] Начало загрузки скрипта...");
+  } else if (upload.status == UPLOAD_FILE_WRITE) {
+    File file = LittleFS.open("/script.txt", FILE_APPEND);
+    if (file) {
+      file.write(upload.buf, upload.currentSize);
+      file.close();
+    }
+  } else if (upload.status == UPLOAD_FILE_END) {
+    server.sendHeader("Location", "/");
+    server.send(303);
+    currentSystemState = STATE_RUNNING;
+    xTaskCreatePinnedToCore(Task_File_Parser, "TaskParser", 8192, NULL, 1, &TaskParserAssignment, 1);
+    logMessage("[Загрузка] Скрипт загружен и запущен!");
+  }
+}
